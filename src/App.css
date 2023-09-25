@@ -1,0 +1,11 @@
+#body {
+  min-height: 500px
+  ;
+}
+
+html,
+body,
+#root,
+#root > div {
+  height: 100%;
+}
