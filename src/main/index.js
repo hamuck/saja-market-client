@@ -2,12 +2,17 @@ import "./index.css";
 import axios from "axios";
 import React from "react";
 import { Link } from "react-router-dom";
+import dayjs from "dayjs";
+import realativeTime from "dayjs/plugin/relativeTime";
+import { API_URL } from "../config/constants.js";
+
+dayjs.extend(realativeTime);
 
 function MainPage() {
   const [products, setProducts] = React.useState([]);
   React.useEffect(function () {
     axios
-      .get("https://cfc0fe54-1d30-41cc-b99a-3d999a632fc3.mock.pstmn.io/product")
+      .get(`${API_URL}/products`)
       .then(function (result) {
         const products = result.data.products;
         setProducts(products);
@@ -19,21 +24,25 @@ function MainPage() {
 
   return (
     <div>
-        <div id="banner">
-          <img src="images/banners/banner1.png" />
-        </div>
-        <h1>판매되는 상품들</h1>
-        <div id="product-list">
-          {products.map(function (product, index) {
-            return (
-              <div className="product-card">
-                <Link className="product-link" to={`./product/${product.id}`}>
-                  <div>
-                    <img className="product-image" src={product.imageUrl} />
-                  </div>
-                  <div className="product-contents">
-                    <span className="product-name">{product.name}</span>
-                    <span className="product-price">{product.price}원</span>
+      <div id="banner">
+        <img src="images/banners/banner1.png" />
+      </div>
+      <h1>판매되는 상품들</h1>
+      <div id="product-list">
+        {products.map(function (product, index) {
+          return (
+            <div className="product-card">
+              <Link className="product-link" to={`./product/${product.id}`}>
+                <div>
+                  <img
+                    className="product-image"
+                    src={`${API_URL}/${product.imageUrl}`}
+                  />
+                </div>
+                <div className="product-contents">
+                  <span className="product-name">{product.name}</span>
+                  <span className="product-price">{product.price}원</span>
+                  <div className="product-footer">
                     <div className="product-seller">
                       <img
                         className="product-avatar"
@@ -41,13 +50,17 @@ function MainPage() {
                       />
                       <span>{product.seller}</span>
                     </div>
+                    <span className="product-date">
+                      {dayjs(product.createdAt).fromNow()}
+                    </span>
                   </div>
-                </Link>
-              </div>
-            );
-          })}
-        </div>
+                </div>
+              </Link>
+            </div>
+          );
+        })}
       </div>
+    </div>
   );
 }
 
