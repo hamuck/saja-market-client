@@ -6,6 +6,8 @@ import UploadPage from "./upload/index.js";
 import ProductPage from "./product/index.js";
 import { Button } from "antd";
 import { DownloadOutlined } from "@ant-design/icons";
+import LoginPage from "./login";
+import SigninPage from "./signin";
 
 function App() {
   const history = useHistory();
@@ -25,6 +27,24 @@ function App() {
           >
             상품 업로드
           </Button>
+          <Button
+            size="large"
+            onClick={function () {
+              history.push("/signin");
+            }}
+            icon={<DownloadOutlined />}
+          >
+            회원가입
+          </Button>
+          <Button
+            size="large"
+            onClick={function () {
+              history.push("/login");
+            }}
+            icon={<DownloadOutlined />}
+          >
+            로그인
+          </Button>
         </div>
       </div>
       <div id="body">
@@ -37,6 +57,12 @@ function App() {
           </Route>
           <Route exact={true} path="/upload">
             <UploadPage />
+          </Route>
+          <Route exact={true} path="/login">
+            <LoginPage />
+          </Route>
+          <Route exact={true} path="/signin">
+            <SigninPage />
           </Route>
         </Switch>
       </div>
