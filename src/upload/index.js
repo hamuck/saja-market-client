@@ -28,6 +28,7 @@ function UploadPage() {
       })
       .then((result) => {
         console.log(result);
+        history.replace("/");
       })
       .catch((error) => {
         console.error(error);

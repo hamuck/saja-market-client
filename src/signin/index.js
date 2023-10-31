@@ -17,7 +17,10 @@ import FormItem from "antd/lib/form/FormItem";
 
 function SigninPage() {
   const history = useHistory();
-  const onSubmit = (values) => {
+  const [isUsernameAvailable, setIsUsernameAvailable] = useState(true);
+  const [userID, setUserID] = useState("");
+
+  const SignInonSubmit = (values) => {
     axios
       .post(`${API_URL}/signin`, {
         userID: values.userID,
@@ -34,11 +37,32 @@ function SigninPage() {
         message.error(`에러가 발생했습니다.${error.message}`);
       });
   };
+  const checkUsernameAvailability = () => {
+    // 아이디 중복 검사를 위한 GET 요청
+    axios
+      .get(`${API_URL}/check-username?username=${userID}`)
+      .then((response) => {
+        if (response.data.isDuplicate) {
+          // 아이디가 중복될 경우
+          setIsUsernameAvailable(false);
+          message.error("아이디가 이미 사용 중입니다.");
+        } else {
+          // 아이디가 중복되지 않을 경우
+          setIsUsernameAvailable(true);
+          message.success("사용 가능한 아이디입니다.");
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+        message.error(`에러가 발생했습니다.${error.message}`);
+      });
+  };
+
   return (
     <div id="signin-conteiner">
-      <Form name="회원가입" onFinish={onSubmit}>
+      <Form name="회원가입" onFinish={SignInonSubmit}>
         <Form.Item
-          name="id"
+          name="userID"
           label={<div className="id-label">아이디</div>}
           rules={[{ required: true, message: "아이디를 입력해주세요" }]}
         >
@@ -48,9 +72,11 @@ function SigninPage() {
             placeholder="아이디를 입력해주세요"
           />
         </Form.Item>
+        <Button onClick={checkUsernameAvailability}>아이디 중복 확인</Button>
+        {isUsernameAvailable ? <p></p> : <p>아이디가 이미 사용 중입니다.</p>}
         <Divider />
         <Form.Item
-          name="pw"
+          name="userPW"
           label={<div className="pw-label">비밀번호</div>}
           rules={[{ required: true, message: "비밀번호를 입력해주세요" }]}
         >
