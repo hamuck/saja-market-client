@@ -37,17 +37,14 @@ function SigninPage() {
         message.error(`에러가 발생했습니다.${error.message}`);
       });
   };
-  const checkUsernameAvailability = () => {
-    // 아이디 중복 검사를 위한 GET 요청
+  const checkUsernameAvailability = (values) => {
     axios
-      .get(`${API_URL}/check-username?username=${userID}`)
+      .get(`${API_URL}/check-username?username=${values.userID}`)
       .then((response) => {
         if (response.data.isDuplicate) {
-          // 아이디가 중복될 경우
           setIsUsernameAvailable(false);
-          message.error("아이디가 이미 사용 중입니다.");
+          message.error("아이디가 사용 중입니다.");
         } else {
-          // 아이디가 중복되지 않을 경우
           setIsUsernameAvailable(true);
           message.success("사용 가능한 아이디입니다.");
         }
@@ -57,6 +54,7 @@ function SigninPage() {
         message.error(`에러가 발생했습니다.${error.message}`);
       });
   };
+  
 
   return (
     <div id="signin-conteiner">

@@ -32,7 +32,6 @@ function App() {
             onClick={function () {
               history.push("/signin");
             }}
-            icon={<DownloadOutlined />}
           >
             회원가입
           </Button>
@@ -41,7 +40,6 @@ function App() {
             onClick={function () {
               history.push("/login");
             }}
-            icon={<DownloadOutlined />}
           >
             로그인
           </Button>
