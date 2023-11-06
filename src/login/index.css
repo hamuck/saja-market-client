@@ -1,0 +1,36 @@
+/* index.css */
+
+#login-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.id-label {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.id-name {
+  width: 100%;
+}
+
+.pw-label {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.pw-name {
+  width: 100%;
+}
+
+#login-submit-button {
+  width: 100%;
+  margin-top: 20px;
+}
+
+/* You can add more CSS styles as needed for your login page */

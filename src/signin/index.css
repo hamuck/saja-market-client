@@ -1,4 +1,5 @@
 #signin-conteiner {
+  margin-top: 20px;
   padding-top: 36px;
 }
 
@@ -17,4 +18,49 @@
   color: white;
   border: none;
   margin-top: 16px;
+}
+#signin-conteiner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.id-label,
+.pw-label,
+.username-label,
+.email-label {
+  font-weight: bold;
+}
+
+.id-name,
+.pw-name,
+.username-name,
+.email-name {
+  width: 100%;
+  padding: 10px;
+  margin: 5px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+#submit-button {
+  width: 100%;
+  background-color: #1890ff;
+  color: #fff;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+#submit-button:hover {
+  background-color: #096dd9;
 }

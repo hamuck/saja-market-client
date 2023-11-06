@@ -36,7 +36,7 @@ function LoginPage() {
       <Form name="로그인" onFinish={onSubmit}>
         <Form.Item
           label={<div className="id-label"></div>}
-          name="id"
+          name="userID"
           rules={[{ required: true, message: "아이디를 입력해주세요" }]}
         >
           <Input
@@ -48,7 +48,7 @@ function LoginPage() {
         <Divider />
         <Form.Item
           label={<div className="pw-label"></div>}
-          name="pw"
+          name="userPW"
           rules={[{ required: true, message: "비밀번호를 입력해주세요." }]}
         >
           <Input
@@ -58,7 +58,12 @@ function LoginPage() {
           />
         </Form.Item>
         <Form.Item>
-          <Button id="login-submit-button" size="large" htmlType="submit">
+          <Button
+            id="login-submit-button"
+            size="large"
+            htmlType="submit"
+            onClick={onSubmit}
+          >
             로그인
           </Button>
         </Form.Item>
